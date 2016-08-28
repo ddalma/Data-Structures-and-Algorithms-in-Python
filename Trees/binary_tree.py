@@ -32,6 +32,7 @@ def getleftchild(root):
 
 def getrightchild(root):
 	return root[2]
+	
 
 
 
