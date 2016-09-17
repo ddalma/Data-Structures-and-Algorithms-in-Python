@@ -1,4 +1,6 @@
-class Stack: #LIFO
+#Stack - LIFO
+
+class Stack:
 	def __init__(self):
 		self.items = []
 	
@@ -16,40 +18,45 @@ class Stack: #LIFO
 	
 	def size(self):
 		return len(self.items)
+	
 
-class Queue: #FIFO
+#Queue: FIFO
+
+class Queue:
 	def __init__(self):
 		self.items = []
 	
 	def isEmpty(self):
 		return self.items == []
-		
-	def enqueue(self, item):
+	
+	def enqueue(self,item):
 		self.items.insert(0, item)
 	
 	def dequeue(self):
-		self.items.pop()
+		return self.items.pop()
 	
 	def size(self):
 		return len(self.items)
 
+#Node class
 class Node(object):
-	def __init__(self, data=None, next_node=None):
+	def __init__(self, data=None,next_node=None):
 		self.data = data
-		self.next_node = next_node
-	
+		self.next_node= next_node
+		
 	def get_data(self):
 		return self.data
 	
 	def get_next(self):
 		return self.next_node
 	
-	def set_next(self, new_next):
+	def set_next(self, new_node):
 		self.next_node = new_node
+		
 
+#Singly Linked List
 class SinglyLinkedList(object):
 	def __init__(self, head=None):
-		
 		self.head = head
 	
 	def insert(self, data):
@@ -76,30 +83,31 @@ class SinglyLinkedList(object):
 				current = current.get_next()
 		
 		if current is None:
-			raise ValueError("Data not is List")
+			raise ValueError("Data not in list")
+		
 		return current
 	
 	def delete(self, data):
 		current = self.head
-		previous = None
 		found = False
+		previous = None
 		while current and found is False:
-			if current.get_dat() == data:
+			if current.get_data() == data:
 				found = True
 			else:
-				previous = current 
+				previous = current
 				current = current.get_next()
 		
 		if current is None:
 			raise ValueError("Data not in list")
+		
 		if previous is None:
 			self.head = current.get_next()
 		else:
 			previous.set_next(current.get_next())
-	
-	
 
-#Sequential Search -Unordered
+
+#Sequential Search - Unordered
 def seq_search(arr, ele):
 	pos = 0
 	found = False
@@ -108,13 +116,15 @@ def seq_search(arr, ele):
 			found = True
 		else:
 			pos += 1
+		
 	return found
 
-#Sequential Search - ordered
+#Sequential Search - Ordered
 def ordered_seq_search(arr, ele):
 	pos = 0
 	found = False
 	stopped = False
+	
 	while pos < len(arr) and not found and not stopped:
 		if arr[pos] == ele:
 			found = True
@@ -123,15 +133,16 @@ def ordered_seq_search(arr, ele):
 				stopped = True
 			else:
 				pos += 1
-	return found
+		
+		return found
 
-#Binary Search - only used for ordered list
-def bin_search(arr, ele): #iteratively
+#Binary Search: Iteratively
+def bin_search(arr, ele):
 	first = 0
 	last = len(arr) - 1
 	found = False
 	while first <= last and not found:
-		mid = (first + last)/2
+		mid = (first+last)/2
 		if arr[mid] == ele:
 			found = True
 		else:
@@ -139,63 +150,28 @@ def bin_search(arr, ele): #iteratively
 				last = mid - 1
 			else:
 				first = mid + 1
+	
 	return found
 
-def recur_bin_search(arr,ele): #recursively
+#Binary Search: Recursively
+def recur_bin_search(arr, ele):
 	if len(arr) == 0:
 		return False
 	else:
 		mid = len(arr)/2
+		
 		if arr[mid] == ele:
 			return True
 		else:
 			if arr[mid] > ele:
-				return recur_bin_search(arr[:mid], ele)
+				return recur_bin_search(arr[:mid],ele)
 			else:
-				return recur_bin_search(arr[mid+1:], ele)
+				return recur_bin_search(arr[mid+1:],ele)
 
-#Bubble Sort
-def bubble_sort(arr):
-	for i in range(len(arr)-1, 0, -1):
-		for k in range(i):
-			if arr[k] > arr[k+1]:
-				temp = arr[k]
-				arr[k] = arr[k+1]
-				arr[k+1] = temp
-
-#Selection Sort
-def selection_sort(arr):
-	for fillslot in range(len(arr)-1, 0, 1):
-		positionMax = 0
-		
-		for location in range(1, fillslot + 1):
-			if arr[location] > arr[positionMax]:
-				positionMax = location
-		
-		temp = arr[location]
-		arr[location] = arr[positionMax]
-		arr[positionMax] = temp 
-
-#Insertion Sort
-def insertion_sort(arr):
-	for i range(1, len(arr)):
-		currentvalue = arr[i]
-		position = i
-		
-		while position > 0 and arr[position - 1] > currentvalue:
-			arr[position] = arr[position -1]
-			position = position - 1
-		
-		arr[position] = currentvalue
-
-#Merge Sort
+#Merge Sort: O(nlogn)
 def merge_sort(arr):
-	if len(arr) == 0:
-		return False
-	
-	else:
+	if len(arr) > 1:
 		mid = len(arr)/2
-		
 		left = arr[:mid]
 		right = arr[mid:]
 		
@@ -209,7 +185,7 @@ def merge_sort(arr):
 		while i < len(left) and j < len(right):
 			if left[i] < right[j]:
 				arr[k] = left[i]
-				i += 1
+				i+= 1
 			else:
 				arr[k] = right[j]
 				j += 1
@@ -217,14 +193,56 @@ def merge_sort(arr):
 		
 		while i < len(left):
 			arr[k] = left[i]
-			i += 1
-			k += 1
+			 i += 1
+			 k += 1
 		
 		while j < len(right):
 			arr[k] = right[j]
 			j += 1
 			k += 1
+<<<<<<< Updated upstream
 			
 			
 		 
 	
+=======
+
+#Quick Sort: O(nlogn)
+def quick_sort(arr):
+	quick_sort_help(arr, 0, len(arr)-1)
+
+def quick_sort_help(arr, first, last):
+	if first < last:
+		splitpoint = partition(arr, first, last)
+		
+		quick_sort_help(arr, first, splitpoint -1)
+		quick_sort_help(arr, splitpoint + 1, last)
+
+def partition(arr, first, last):
+	pivotvalue = arr[first]
+	leftmark = first + 1
+	rightmark = last
+	
+	done = True
+	while not done:
+		while leftmark <= rightmark  and arr[leftmark] <= pivotvalue:
+			leftmark += 1
+		
+		while arr[rightmark] >= pivotvalue and rightmark >= leftmark:
+			rightmark -= 1
+		
+		if rightmark < leftmark:
+			done = True
+		
+		else:
+			temp = arr[leftmark]
+			arr[leftmark] = arr[rightmark]
+			arr[rightmark] = temp
+		
+		temp = arr[first]
+		arr[first] = arr[rightmark]
+		arr[rightmark] = temp
+		
+		return rightmark
+		
+>>>>>>> Stashed changes
