@@ -1,5 +1,5 @@
 from random import randint
-
+#Rock, Paper and Scissors game
 def rps():
 	y = 'y'
 	while y =='y' or y=='Y':
