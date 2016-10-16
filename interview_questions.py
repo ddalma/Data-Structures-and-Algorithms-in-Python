@@ -513,55 +513,5 @@ def anagram_checker(s1, s2):
 	
 	return True
 
-#Array Pair sum
-def pair_sum(arr, k):
-	if len(arr) < 2:
-		return
-	
-	seen = set()
-	output = set()
-	
-	for num in arr:
-		target = k - num
-		if target not in seen:
-			seen.add(num)
-		else:
-			output.add((min(num, target), max(num, target)))
-	
-	return len(output)
-
-#Largest Continuous Sum
-def large_cont_sum(arr):
-	if len(arr) == 0:
-		return 0
-	
-	max_sum = current_sum = arr[0]
-	
-	for num in arr[1:]:
-		current_sum = max(current_sum + num, num)
-		max_sum = max(current_sum, max_sum)
-	
-	return max_sum
-
-#Reverse a string
-def reverse(s):
-	if len(s) <= 1:
-		return s
-	
-	return reverse(s[1:]) + s[0]
-
-#Permutation
-def permute(s):
-	out = []
-	
-	if len(s) == 1:
-		out = [s]
-	else:
-		for i, let in enumerate(s):
-			for perm in permute(s[:1] + s[i+1:]):
-				
-				out += [let + perm]
-	
-	return out
 	
 		
